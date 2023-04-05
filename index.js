@@ -61,7 +61,7 @@ app.post('/login', (req, res) => {
 				return current;
 			}
 		});
-		currentUser = result[0];
+		currentUser = result;
 	}
 	// Check if email and password are valid
 	console.log(currentUser);
