@@ -1,19 +1,53 @@
 // index.js
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = 4000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+
+const fs = require('fs')
+const jsonData = JSON.parse(fs.readFileSync('data.json'));
 
 app.listen(PORT, () => {
   console.log(`API listening on PORT ${PORT} `)
 });
 
-app.get("/", (req, res) => {
-	res.json({ message: "Hello from server!" });
-});
+// app.get("/", (req, res) => {
+// 	res.json({ message: "Hello from server!" });
+// });
 
 app.get("/test", (req, res) => {
 	res.json({ message: "Hello from test server!" });
+});
+
+app.post('/', (req, res) => {
+	const username = "ranemihirk", password = "testpassword";
+	console.log("login: ", username, password);
+	const users = jsonData.users;
+	console.log("jsonData: ", jsonData);
+	console.log("users: ", users);
+	let currentUser, result;
+	if(users.length > 0){
+		result = users.map(current => {
+			if (current.username == username && current.password == password) {
+				return current;
+			}
+		});
+		currentUser = result;
+	}
+	// Check if email and password are valid
+	console.log("currentUser: ", currentUser);
+	if (typeof(currentUser) != "undefined") {
+		delete currentUser.password;
+		res.status(200).send({ message: 'Login successful', user: currentUser });
+	} else {
+		res.status(200).send({ message: 'Invalid email or password' });
+	}
 });
 
 app.post('/login', (req, res) => {
