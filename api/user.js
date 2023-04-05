@@ -1,11 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
 	res.json({ message: "Hello from server!" });
 });
 
-app.post('/login', (req, res) => {
+router.get("/test", (req, res) => {
+	res.json({ message: "Hello from test server!" });
+});
+
+router.post('/login', (req, res) => {
 	const { username, password } = req.body;
 	console.log("login: ", username, password);
 	const users = jsonData.users;
@@ -28,7 +32,7 @@ app.post('/login', (req, res) => {
 	}
 });
 
-app.post('/createuser', (req, res) => {
+router.post('/createuser', (req, res) => {
 	console.log(req);
 	const { user } = req.body;
 	console.log(user);
