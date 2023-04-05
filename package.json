@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node routes/index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -16,5 +16,19 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranemihirk/tweetie-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranemihirk/tweetie-backend/issues"
+  },
+  "homepage": "https://github.com/ranemihirk/tweetie-backend#readme",
+  "description": ""
 }
